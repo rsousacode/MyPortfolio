@@ -1,5 +1,5 @@
 <script>
-  import { fade } from 'svelte/transition'
+  import { fade, blur } from 'svelte/transition'
   import TypeWriter from 'svelte-typewriter'
   // props data
   export let author
@@ -15,7 +15,6 @@
     const index = projects.findIndex(p => p.name === name)
     projects[index].visible = !projects[index].visible
   }
-
   
 </script>
 
@@ -24,13 +23,16 @@
   <h1><span>{author}</span></h1>
   <h3>{position}</h3> 
   <div>
-    <h5>Projects</h5>
+    <h5 >Projects</h5>
       <div class="flex-container">
-        <div class="flex-item-left">
+        <div>
           {#each projects as {name, description, id}}
-            <h2 class="pointer" on:click={toggleProjectVisibility(name)}>{name}</h2>
+          <div class="translate">
+            <h2 class="pointer"
+              on:click={toggleProjectVisibility(name)}>
+              {name}</h2></div>
             {#if getProjectVisibility(name)}
-            <TypeWriter>
+            <TypeWriter interval={8}>
               <p>{description} </p>
             </TypeWriter>
             {/if}
@@ -41,6 +43,7 @@
 </main>
 
 <style>
+
 	main {
 		padding: 1em;
 		max-width: 240px;
@@ -54,6 +57,19 @@
 		font-weight: 100;
 	}
 
+  .translate h2{
+	-webkit-transition:all 0.6s ease-in 0.1s;
+	-moz-transition: all 0.6s ease-in 0.1s;
+	-o-transition: all 0.6s ease-in 0.1s;
+	transition: all 0.6s ease-in 0.1s;
+}
+.translate:hover h2{
+	-webkit-transform: translate(1.3rem);
+	-moz-transform: translate(1.3rem);
+	-ms-transform: translate(1.3rem);
+	-o-transform: translate(1.3rem);
+	transform: translate(1.3rem);
+}
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
