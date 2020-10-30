@@ -1,5 +1,6 @@
 <script>
   import { fade } from 'svelte/transition'
+  import TypeWriter from 'svelte-typewriter'
   // props data
   export let author
   export let position
@@ -14,6 +15,8 @@
     const index = projects.findIndex(p => p.name === name)
     projects[index].visible = !projects[index].visible
   }
+
+  
 </script>
 
 <main>
@@ -22,12 +25,18 @@
   <h3>{position}</h3> 
   <div>
     <h5>Projects</h5>
-    {#each projects as {name, description}}
-      <h2 on:click={toggleProjectVisibility(name)}>{name}</h2>
-      {#if getProjectVisibility(name)}
-        <p transition:fade>{description}</p>
-      {/if}
-    {/each}
+      <div class="flex-container">
+        <div class="flex-item-left">
+          {#each projects as {name, description, id}}
+            <h2 class="pointer" on:click={toggleProjectVisibility(name)}>{name}</h2>
+            {#if getProjectVisibility(name)}
+            <TypeWriter>
+              <p>{description} </p>
+            </TypeWriter>
+            {/if}
+          {/each}
+      </div>
+    </div>
   </div>
 </main>
 

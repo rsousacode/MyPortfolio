@@ -62,3 +62,18 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 55%;
+}
+
+.flex-item-left {
+  padding: 1%;
+  flex: 50%;
+}
+
+.pointer {
+  cursor: pointer;
+}

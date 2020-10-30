@@ -32,7 +32,8 @@ export default {
 	output: {
 		sourcemap: true,
 		format: 'iife',
-		name: 'app',
+    name: 'app',
+    inlineDynamicImports: true,
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
