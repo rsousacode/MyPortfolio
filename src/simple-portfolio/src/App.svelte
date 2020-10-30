@@ -1,24 +1,47 @@
 <script>
-	export let name;
+  import { fade } from 'svelte/transition'
+  // props data
+  export let author
+  export let position
+  export let projects
+
+  // functions
+  function getProjectVisibility (name) {
+    return projects.filter(d => d.name === name)[0].visible
+  }
+
+  function toggleProjectVisibility (name) {
+    const index = projects.findIndex(p => p.name === name)
+    projects[index].visible = !projects[index].visible
+  }
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+  
+  <h1><span>{author}</span></h1>
+  <h3>{position}</h3> 
+  <div>
+    <h5>Projects</h5>
+    {#each projects as {name, description}}
+      <h2 on:click={toggleProjectVisibility(name)}>{name}</h2>
+      {#if getProjectVisibility(name)}
+        <p transition:fade>{description}</p>
+      {/if}
+    {/each}
+  </div>
 </main>
 
 <style>
 	main {
-		text-align: center;
 		padding: 1em;
 		max-width: 240px;
-		margin: 0 auto;
+    margin: 0 auto;
 	}
 
 	h1 {
-		color: #ff3e00;
+		color: #c1ffb5;
 		text-transform: uppercase;
-		font-size: 4em;
+		font-size: 2.5em;
 		font-weight: 100;
 	}
 
