@@ -1,5 +1,5 @@
 <script>
-  import { fade, blur } from 'svelte/transition'
+  import { fade, blur, fly } from 'svelte/transition'
   import TypeWriter from 'svelte-typewriter'
   // props data
   export let author
@@ -15,6 +15,21 @@
     const index = projects.findIndex(p => p.name === name)
     projects[index].visible = !projects[index].visible
   }
+
+  function closeAllVisibilityExcept (name) {
+    toggleProjectVisibility(name)
+    console.log("ok")
+
+    var i;
+    for (i = 0; i < projects.length; i++) {
+      console.log('run')
+      var project = projects[i]
+      if(project.name !== name) {
+        projects[i].visible = false
+
+      }
+    } 
+  }
   
 </script>
 
@@ -29,11 +44,11 @@
           {#each projects as {name, description, id}}
           <div class="translate">
             <h2 class="pointer"
-              on:click={toggleProjectVisibility(name)}>
+              on:click={closeAllVisibilityExcept(name)}>
               {name}</h2></div>
             {#if getProjectVisibility(name)}
             <TypeWriter interval={8}>
-              <p>{description} </p>
+              <p transition:fly>{description} </p>
             </TypeWriter>
             {/if}
           {/each}
