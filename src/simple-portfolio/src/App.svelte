@@ -1,5 +1,5 @@
 <script>
-  import { fade, blur, fly } from 'svelte/transition'
+  import { fade } from 'svelte/transition'
   import TypeWriter from 'svelte-typewriter'
   // props data
   export let author
@@ -42,19 +42,21 @@
       <div class="flex-container">
         <div>
           {#each projects as {name, description, id}}
-          <div class="translate">
-            <h2 class="pointer"
-              on:click={closeAllVisibilityExcept(name)}>
-              {name}</h2></div>
-            {#if getProjectVisibility(name)}
-            <TypeWriter interval={8}>
-              <p transition:fly>{description} </p>
-            </TypeWriter>
-            {/if}
+          <div class="stuff" data-flip-key={id} data-flip-no-scale>
+            <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
+              {name}</h2>
+              <div class="details">
+                {#if getProjectVisibility(name)}
+                <TypeWriter interval={8}>
+                  <p transition:fade>{description}</p>
+                </TypeWriter>
+                {/if}
+              </div></div>
           {/each}
       </div>
     </div>
   </div>
+
 </main>
 
 <style>
@@ -72,13 +74,13 @@
 		font-weight: 100;
 	}
 
-  .translate h2{
+  .stuff h2{
 	-webkit-transition:all 0.6s ease-in 0.1s;
 	-moz-transition: all 0.6s ease-in 0.1s;
 	-o-transition: all 0.6s ease-in 0.1s;
 	transition: all 0.6s ease-in 0.1s;
 }
-.translate:hover h2{
+.stuff:hover h2{
 	-webkit-transform: translate(1.3rem);
 	-moz-transform: translate(1.3rem);
 	-ms-transform: translate(1.3rem);
@@ -89,5 +91,11 @@
 		main {
 			max-width: none;
 		}
-	}
+  }
+  
+
+.stuff:not([data-open]) .details {
+  display: none;
+}
+
 </style>
