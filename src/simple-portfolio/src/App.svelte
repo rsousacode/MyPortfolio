@@ -56,8 +56,8 @@ let show = true
 
 <main>
   <div class="container">
-  <h1>{author}</h1>
-  <p>{position}</p> 
+  <div class="author">{author}</div>
+  <div class="position">{position}</div>
     <h5 >Projects</h5>
       <div class="flex-container">
         <div class="flex-item">
@@ -65,6 +65,7 @@ let show = true
           <div class="stuff" data-flip-key={id} data-flip-no-scale>
             <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
               {name}</h2>
+              <div class="flex-container">
               <div class="details">
                 {#if getProjectVisibility(name)}
                 <TypeWriter interval={8}>
@@ -72,6 +73,7 @@ let show = true
                 </TypeWriter>
                 {/if}
               </div> <!-- close class details -->
+            </div> <!-- close flex-->
             </div> <!-- close class stuff -->
           {/each}
       </div> <!-- close class flex item -->
@@ -79,7 +81,7 @@ let show = true
   </div> <!-- close class container -->
     <footer>
       {#if show}
-      <TypeWriter>
+      <TypeWriter cursor=true>
       <p> {termText} </p>
     </TypeWriter>
     {/if}

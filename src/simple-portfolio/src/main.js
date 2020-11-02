@@ -24,8 +24,7 @@ const app = new App({
       {
         id: 2,
         name: 'Lusoportunas', 
-      description: 'it is a website carried out within the context of Games & '
-      + 'Apps Development bachelor degree at IADE. It streamlines the job finding process'
+      description: 'Streamlines the job finding process'
       + 'and has a comprehensive dashboard for recruiters and job seekers with a communication' 
       + 'platform that allows both to connect easily.', 
       toggled: false,
