@@ -10,12 +10,17 @@ const app = new App({
         id: 0,
         name: 'Winter Come', 
         description: 'Backend, for the Winter Come game made in Unity, which allows login and QR-Login from the companion app and presents useful data about the game to the player.' , 
-        toggled: false },
+        toggled: false,
+        tech: 'Node.JS, Express, MongoDB, C#, JS'
+      },
       { 
         id: 1,
         name: 'Puryon', 
         description: 'Frontend and Backend, for the Puryon FPS multiplayer game made in UE4, which presents real-time statistics and data about the game being played.' , 
-        toggled: false },
+        toggled: false,
+        tech: 'Node.JS, Express, MongoDB, React, JS'
+
+      },
       {
         id: 2,
         name: 'Lusoportunas', 
@@ -23,7 +28,10 @@ const app = new App({
       + 'Apps Development bachelor degree at IADE. It streamlines the job finding process'
       + 'and has a comprehensive dashboard for recruiters and job seekers with a communication' 
       + 'platform that allows both to connect easily.', 
-      toggled: false },
+      toggled: false,
+      tech: 'Node.JS, Express, MongoDB, Pug'
+
+    },
       
     ]
 	}

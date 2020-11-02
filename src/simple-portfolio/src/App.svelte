@@ -5,6 +5,8 @@
   export let author
   export let position
   export let projects
+  let termText = '> Welcome to my full stack portfolio!'
+  let allProjectsClosed = true
 
   // functions
   function getProjectVisibility (name) {
@@ -14,15 +16,20 @@
   function toggleProjectVisibility (name) {
     const index = projects.findIndex(p => p.name === name)
     projects[index].visible = !projects[index].visible
+    if(projects[index].visible) {
+      // termText = `Project tech: ${projects[index].tech}`
+      allProjectsClosed = false
+    } else {
+      allProjectsClosed = true;
+    }
   }
 
   function closeAllVisibilityExcept (name) {
-    toggleProjectVisibility(name)
-    console.log("ok")
+    allProjectsClosed = true;
+    toggleProjectVisibility(name)  
 
     var i;
     for (i = 0; i < projects.length; i++) {
-      console.log('run')
       var project = projects[i]
       if(project.name !== name) {
         projects[i].visible = false
@@ -30,17 +37,30 @@
       }
     } 
   }
+let show = true
+  function testTimer () {
+    setTimeout(() => {
+      show = true
+      termText = 'another text'
+    }, 4000)
+    setTimeout(() => {
+          show = false
+    }, 2000)
+    setTimeout(() => {
+          show = true
+    }, 3500)
+  }
+  testTimer()
   
 </script>
 
 <main>
-  
-  <h1><span>{author}</span></h1>
-  <h3>{position}</h3> 
-  <div>
+  <div class="container">
+  <h1>{author}</h1>
+  <p>{position}</p> 
     <h5 >Projects</h5>
       <div class="flex-container">
-        <div>
+        <div class="flex-item">
           {#each projects as {name, description, id}}
           <div class="stuff" data-flip-key={id} data-flip-no-scale>
             <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
@@ -51,51 +71,22 @@
                   <p transition:fade>{description}</p>
                 </TypeWriter>
                 {/if}
-              </div></div>
+              </div> <!-- close class details -->
+            </div> <!-- close class stuff -->
           {/each}
-      </div>
-    </div>
-  </div>
+      </div> <!-- close class flex item -->
+    </div> <!-- close class flex container -->
+  </div> <!-- close class container -->
+    <footer>
+      {#if show}
+      <TypeWriter>
+      <p> {termText} </p>
+    </TypeWriter>
+    {/if}
+    </footer>
 
 </main>
 
 <style>
-
-	main {
-		padding: 1em;
-		max-width: 240px;
-    margin: 0 auto;
-	}
-
-	h1 {
-		color: #c1ffb5;
-		text-transform: uppercase;
-		font-size: 2.5em;
-		font-weight: 100;
-	}
-
-  .stuff h2{
-	-webkit-transition:all 0.6s ease-in 0.1s;
-	-moz-transition: all 0.6s ease-in 0.1s;
-	-o-transition: all 0.6s ease-in 0.1s;
-	transition: all 0.6s ease-in 0.1s;
-}
-.stuff:hover h2{
-	-webkit-transform: translate(1.3rem);
-	-moz-transform: translate(1.3rem);
-	-ms-transform: translate(1.3rem);
-	-o-transform: translate(1.3rem);
-	transform: translate(1.3rem);
-}
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-  }
-  
-
-.stuff:not([data-open]) .details {
-  display: none;
-}
 
 </style>
