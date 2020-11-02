@@ -38,7 +38,7 @@ const app = new App({
 
 
 const flipping = new Flipping({
-  easing: "cubic-bezier(.5, 0, .5, 1)"
+  easing: "cubic-bezier(.01, 0, .5, 1)"
 });
 
 

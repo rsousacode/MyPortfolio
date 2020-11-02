@@ -1,5 +1,5 @@
 <script>
-  import { fade } from 'svelte/transition'
+  import { fly } from 'svelte/transition'
   import TypeWriter from 'svelte-typewriter'
   // props data
   export let author
@@ -53,27 +53,24 @@ let show = true
   testTimer()
   
 </script>
-
+<div class="bg">
 <main>
   <div class="container">
-  <div class="author">{author}</div>
-  <div class="position">{position}</div>
-    <h5 >Projects</h5>
+  <div class="author-card"></div>
+    <div class="author">{author}</div>
+    <div class="position">{position}</div>
+    <div class="projects-title">Projects</div>
       <div class="flex-container">
         <div class="flex-item">
           {#each projects as {name, description, id}}
           <div class="stuff" data-flip-key={id} data-flip-no-scale>
             <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
               {name}</h2>
-              <div class="flex-container">
               <div class="details">
                 {#if getProjectVisibility(name)}
-                <TypeWriter interval={8}>
-                  <p transition:fade>{description}</p>
-                </TypeWriter>
+                  <p transition:fly="{{ x: -100, duration: 700 }}">{description}</p>
                 {/if}
               </div> <!-- close class details -->
-            </div> <!-- close flex-->
             </div> <!-- close class stuff -->
           {/each}
       </div> <!-- close class flex item -->
@@ -88,7 +85,7 @@ let show = true
     </footer>
 
 </main>
-
+</div>
 <style>
 
 </style>
