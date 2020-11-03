@@ -58,7 +58,7 @@ button:focus {
 }
 
 
-.flex-container-header {
+.flex-container {
     display: -webkit-flex;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
