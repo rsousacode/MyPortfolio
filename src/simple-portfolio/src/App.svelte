@@ -11,7 +11,6 @@
 
     // auxiliar
     let termPrompt = '> '
-    let termText = termPrompt + 'Loading...'
     let pageLoaded = false
     let timeouts = []
 
@@ -24,16 +23,8 @@
 
         const index = projects.findIndex(p => p.name === name)
         projects[index].visible = !projects[index].visible
-        if (projects[index].visible) {
-            clearTimeouts()
-            typeWriteAfter(2500, `Stack: ${projects[index].tech}`)
-        } else {
-            clearTimeouts()
-            typeWriteAfter(30, defaultTermText)
-        }
 
     }
-
 
     function closeAllVisibilityExcept(name) {
         toggleProjectVisibility(name)
@@ -47,39 +38,12 @@
         }
     }
 
-    function clearTimeouts() {
-        let i
-        for (i = 0; i < timeouts.length; i++) {
-            clearTimeout(timeouts[i])
-        }
-    }
-
-    let defaultTermText = '...'
-
     function simulateLoading() {
         setTimeout(() => {
             pageLoaded = true
-
-            typeWriteAfter(1000, 'Welcome to my portfolio! :) ')
         }, 1500)
     }
 
-    function typeWriteAfter(delay, text) {
-        timeouts.push(setTimeout(() => {
-            typeWriting = true
-            termText = termPrompt + text
-        }, delay))
-    }
-
-    // term
-    let typeWriting = true
-
-    function OnTypeWritingFinished() {
-        setTimeout(() => {
-            typeWriting = false
-        }, 1000)
-
-    }
 
     simulateLoading()
 
@@ -89,18 +53,17 @@
     <div class="flex-item">
       <div class="author-card">
         <div class="author" transition:fade>{author}</div>
-
         <div class="position">{position}</div>
-        <a href="{github}" target="_blank" class="link ml-5">
+        <a href="{github}" target="_blank" class="link ml-4">
           <img alt="github" src="/icons/github-alt.svg" class="icon"/>
         </a>
-        <a href="{linkedin}" target="_blank" class="link ml-5">
+        <a href="{linkedin}" target="_blank" class="link ml-4">
           <img alt="linkedin" src="/icons/linkedin.svg" class="icon"/>
         </a>
-        <a href="{twitter}" target="_blank" class="link ml-5"><img alt="twitter" src="/icons/twitter.svg" class="icon"/></a>
+        <a href="{twitter}" target="_blank" class="link ml-4"><img alt="twitter" src="/icons/twitter.svg" class="icon"/></a>
       </div>
     </div> <!-- close flex item-->
-  </div>
+  </div> <!-- close flex container -->
   {#if pageLoaded}
     <div class="flex-container" transition:fade>
       <div class="flex-item">
@@ -134,17 +97,4 @@
       </div> <!-- close class flex item -->
     </div> <!-- close class flex container -->
   {/if}
-  <footer>
-    {#if typeWriting}
-      <TypeWriter cursor=true on:done={() => OnTypeWritingFinished()}>
-        <div class="term">
-          <div class="term-text">{termText} </div>
-        </div>
-      </TypeWriter>
-    {:else}
-      <div class="term">
-        <div class="term-text">{termText} </div>
-      </div>
-    {/if}
-  </footer>
 </main>
