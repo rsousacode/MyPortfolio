@@ -8,6 +8,7 @@ html, body {
   background-image: linear-gradient( 315deg,#414141,#1e4058,#1d302b);
   background-size: 100% 100%;
   background-attachment: fixed;
+  margin-left: 10px;
 }
 
 .bg {
@@ -150,7 +151,7 @@ h2 {
 }
 
 
-@media (max-width: 660px) {
+@media (max-width: 720px) {
   main {
     max-width: 90%;
   }
@@ -161,34 +162,34 @@ h2 {
   }
 
   .details {
-    padding-left: 2.2 rem; 
+    padding-inline-start: 0.6rem;
+  }
+  .stuff[data-open] h2 {
+    -webkit-transform: translate(0.6rem);
+    -moz-transform: translate(0.6rem);
+    -ms-transform: translate(0.6rem);
+    -o-transform: translate(0.6rem);
+    transform: translate(0.6rem);
   }
 
-  .term {
-    display: none;
-  }
 }
-@media (max-height: 580px) {
 
-  .details {
-    padding-left: 1 rem; 
-  }
-}
-@media (min-width: 640px) {
+@media (min-width: 720px) {
   main {
     max-width: 90%;
   }
   .details {
-    padding-inline-start: 5%;
+    padding-inline-start: 1.3rem;
+  }
+  .stuff[data-open] h2 {
+    -webkit-transform: translate(1.3rem);
+    -moz-transform: translate(1.3rem);
+    -ms-transform: translate(1.3rem);
+    -o-transform: translate(1.3rem);
+    transform: translate(1.3rem);
   }
 }
-.stuff[data-open] h2 {
-  -webkit-transform: translate(1.3rem);
-  -moz-transform: translate(1.3rem);
-  -ms-transform: translate(1.3rem);
-  -o-transform: translate(1.3rem);
-  transform: translate(1.3rem);
-}
+
 
 .stuff[data-open] .pointer {
   color: rgb(219, 242, 255); 
@@ -239,14 +240,13 @@ display: none;
 }
 
 .term {
-  width:100%;
-  padding-bottom: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
+
   color: rgb(138, 184, 202);
   border: 1px solid;
   background-image: linear-gradient( 315deg,#414141,#1e4058,#263f53);
   border-image-slice: 1;
+  flex-wrap: wrap;
+  justify-self: end;
 }
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 .term-text {
