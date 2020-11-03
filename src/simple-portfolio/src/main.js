@@ -5,9 +5,9 @@ const app = new App({
 	props: {
     author: 'Rui Sousa',
     position: "Full-stack programmer",
-    twitter: '#',
+    twitter: 'https://twitter.com/rsousacode',
     github: 'https://github.com/rsousacode',
-    linkedin: '#',
+    linkedin: 'https://linkedin.com/in/rsousa',
     uid: 0,
     projects: [
       { 

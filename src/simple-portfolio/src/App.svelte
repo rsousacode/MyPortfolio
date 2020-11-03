@@ -91,13 +91,13 @@
       <div class="author" transition:fade>{author}</div>
       
       <div class="position">{position}</div>
-      <a href="{github}" class="link ml-5">
+      <a href="{github}" target="_blank" class="link ml-5">
         <img alt="github" src="/icons/github-alt.svg" class="icon"/>
       </a>
-      <a href="{linkedin}" class="link ml-5">
+      <a href="{linkedin}" target="_blank" class="link ml-5">
         <img alt="linkedin" src="/icons/linkedin.svg" class="icon"/>
       </a>
-      <a href="{twitter}" class="link ml-5"><img alt="twitter" src="/icons/twitter.svg" class="icon"/></a>
+      <a href="{twitter}" target="_blank" class="link ml-5"><img alt="twitter" src="/icons/twitter.svg" class="icon"/></a>
 
     </div>
     </div> <!-- close flex item-->
