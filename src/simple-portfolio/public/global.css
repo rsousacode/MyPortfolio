@@ -7,7 +7,7 @@ html, body {
   height: 100%;
   background-image: linear-gradient( 315deg,#414141,#1e4058,#1d302b);
   background-size: 100% 100%;
-  background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 .bg {
@@ -162,6 +162,10 @@ h2 {
 
   .details {
     padding-left: 2.2 rem; 
+  }
+
+  .term {
+    display: none;
   }
 }
 @media (max-height: 580px) {
