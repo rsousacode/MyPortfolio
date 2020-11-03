@@ -76,7 +76,7 @@ button:focus {
   flex-wrap: wrap-reverse;
   display: flex;
   flex-direction: row;
-  padding-bottom: 5.5rem;
+  margin-bottom: 4rem;
 }
 
 
@@ -172,6 +172,22 @@ h2 {
     transform: translate(0.6rem);
   }
 
+  footer {
+    position: fixed;
+    left: 2%;
+    right: 2%;
+    bottom: 5px;
+    width: 94%;
+    float: center;
+  }
+  .term-text {
+    font-size: 11px;
+    padding-left: 20px;
+  }
+}
+
+.term-text {
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 @media (min-width: 720px) {
@@ -187,6 +203,19 @@ h2 {
     -ms-transform: translate(1.3rem);
     -o-transform: translate(1.3rem);
     transform: translate(1.3rem);
+  }
+
+  footer {
+    position: fixed;
+    left: 20%;
+    right: 20%;
+    bottom: 10px;
+    width: 65%;
+    float: center;
+  }
+  .term-text {
+    font-size: 13px;
+    padding-left: 20px;
   }
 }
 
@@ -240,20 +269,18 @@ display: none;
 }
 
 .term {
-
+  width:100%;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
   color: rgb(138, 184, 202);
   border: 1px solid;
   background-image: linear-gradient( 315deg,#414141,#1e4058,#263f53);
+  opacity: 0.8;
   border-image-slice: 1;
-  flex-wrap: wrap;
-  justify-self: end;
 }
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
-.term-text {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13px;
-  padding-left: 20px;
-}
+
 
 .icon {
   filter: invert(74%) sepia(12%) saturate(519%) hue-rotate(158deg) brightness(90%) contrast(90%);
@@ -261,14 +288,6 @@ display: none;
   transition: filter 1111ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-footer {
-  position: fixed;
-  left: 20%;
-  right: 20%;
-  bottom: 10px;
-  width: 65%;
-  float: center;
-}
 
 .link {
   color: rgb(149, 175, 190);
