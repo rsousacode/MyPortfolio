@@ -41,7 +41,7 @@
     function simulateLoading() {
         setTimeout(() => {
             pageLoaded = true
-        }, 1500)
+        }, 800)
     }
 
 
@@ -49,7 +49,7 @@
 
 </script>
 <main>
-  <div class="flex-container">
+  <div class="flex-container mt-3">
     <div class="flex-item">
       <div class="author-card">
         <div class="author" transition:fade>{author}</div>
@@ -65,12 +65,12 @@
     </div> <!-- close flex item-->
   </div> <!-- close flex container -->
   {#if pageLoaded}
-    <div class="flex-container" transition:fade>
+    <div class="flex-container mt-4" transition:fly="{{ x: -200, duration: 300}}">
       <div class="flex-item">
-        <div class="projects-title" transition:fade>Projects</div>
+        <div class="projects-title" transition:fly>Projects</div>
 
         {#each projects as {name, description, id, github, website}}
-          <div class="stuff" data-flip-key={id} data-flip-no-scale>
+          <div class="stuff" data-flip-key={id} data-flip-no-scale transition:fade="{{delay: 450 * (id + 1)}}">
             <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
               {name}</h2>
             <div class="details">

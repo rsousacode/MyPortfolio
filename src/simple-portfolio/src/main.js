@@ -81,7 +81,7 @@ setTimeout(() => {
                 }
             }));
     });
-}, 1550)
+}, 850)
 
 
 export default app;
