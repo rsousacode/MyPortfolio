@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "../../Typewriter.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\n\timport { createEventDispatcher } from 'svelte'\n\timport { typewriter } from './modes'\n\n\texport let interval = 30\n\texport let cascade = false\n\texport let loop = false\n\texport let scramble = false\n\texport let cursor = true\n\texport let delay = 0\n\n\tconst dispatch = createEventDispatcher()\n\n\tconst options = { interval, cascade, loop, scramble, cursor, delay, dispatch }\n</script>\n\n<style>\n\t@keyframes cursorFade {\n\t\t0%,\n\t\t100% {\n\t\t\topacity: 1;\n\t\t}\n\n\t\t50% {\n\t\t\topacity: 0;\n\t\t}\n\t}\n\n\t.cursor :global(.typing::after) {\n\t\tcontent: '▌';\n\t\tdisplay: inline-block;\n\t\tcolor: var(--cursor-color);\n\t\tanimation: cursorFade 1.25s infinite;\n\t}\n\n\t.delay {\n\t\tvisibility: hidden;\n\t}\n</style>\n\n<div\n\tuse:typewriter={options}\n\tclass:cursor\n\tclass:delay={options.delay > 0}\n\tstyle=\"--cursor-color: {typeof cursor === 'string' ? cursor : 'black'}\"\n>\n\t<slot />\n</div>\n"
+  ],
+  "names": [],
+  "mappings": "AAiBC,WAAW,wBAAW,CAAC,AACtB,EAAE,CACF,IAAI,AAAC,CAAC,AACL,OAAO,CAAE,CAAC,AACX,CAAC,AAED,GAAG,AAAC,CAAC,AACJ,OAAO,CAAE,CAAC,AACX,CAAC,AACF,CAAC,AAED,qBAAO,CAAC,AAAQ,cAAc,AAAE,CAAC,AAChC,OAAO,CAAE,GAAG,CACZ,OAAO,CAAE,YAAY,CACrB,KAAK,CAAE,IAAI,cAAc,CAAC,CAC1B,SAAS,CAAE,wBAAU,CAAC,KAAK,CAAC,QAAQ,AACrC,CAAC,AAED,MAAM,cAAC,CAAC,AACP,UAAU,CAAE,MAAM,AACnB,CAAC"
+}
