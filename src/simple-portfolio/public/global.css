@@ -187,7 +187,7 @@ h2 {
 
 
 .stuff[data-open] .pointer {
-    color: rgb(219, 242, 255);
+    color: #ade7ff;
 
 }
 
@@ -206,7 +206,7 @@ h2 {
 }
 
 .pointer:hover {
-    color: #fff;
+    color: rgb(219, 242, 255);
 }
 
 .pointer:hover::before {

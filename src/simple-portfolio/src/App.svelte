@@ -70,25 +70,28 @@
         <div class="projects-title" transition:fly>Projects</div>
 
         {#each projects as {name, description, id, github, website}}
-          <div class="stuff" data-flip-key={id} data-flip-no-scale transition:fade="{{delay: 450 * (id + 1)}}">
+          <div class="stuff" data-flip-key={id} data-flip-no-scale transition:fade="{{x: -100, delay: 500 + 260 * (id + 1)}}">
             <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
               {name}</h2>
             <div class="details">
               {#if getProjectVisibility(name)}
-                <div transition:fly="{{ x: -100, duration: 700, delay: 500 }}">
-                  <p>{description}</p>
-                  <a transition:fly="{{ y: 200, duration: 700, delay: 1500 }}" href="{github}"
+                <div >
+                  <p in:fly="{{ x: -100, duration: 700, delay: 500 }}" out:fade>{description}</p>
+                  <div in:fly="{{ y: -35, duration: 700, delay: 1500 }}" out:fade>
+                  <a href="{github}"
                      target="_blank" class="link"><img alt="github" src="/icons/github-alt.svg"
                                                        class="icon"/>
                     <span class="link">GitHub</span>
                   </a>
+
                   {#if website !== ''}
-                    <a transition:fly="{{ y: 200, duration: 700, delay: 2500 }}" href="{website}"
+                    <a href="{website}"
                        target="_blank" class="link"><img alt="website" src="/icons/web.svg"
                                                          class="icon"/>
                       <span class="link">Website</span>
                     </a>
                   {/if}
+                  </div>
                 </div>
               {/if}
             </div> <!-- close class details -->
