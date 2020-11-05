@@ -28,10 +28,9 @@ body {
 }
 
 .col {
-    flex:auto;
+    flex: auto;
 
 }
-
 
 .author {
     color: #ffffff;
@@ -65,7 +64,7 @@ body {
 /* Link */
 
 .link:link,
-.link:visited{
+.link:visited {
     color: rgb(149, 175, 190);
     text-decoration: none;
     font-size: 18px;
