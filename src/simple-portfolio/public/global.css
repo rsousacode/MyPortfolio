@@ -27,9 +27,14 @@ body {
     flex-direction: row;
 }
 
-.col {
+.col-left {
     flex: auto;
+    lex-basis: 45%;
+}
 
+.col-right {
+    flex: auto;
+    lex-basis: 65%;
 }
 
 .author {
@@ -173,9 +178,11 @@ a {
 /* Card */
 
 .card {
+    max-width: 100px;
+    max-height: 50px;
     padding: 9px;
     text-align: center;
-    background-image: linear-gradient(315deg, #1b2f58, #1e4058);
+    background-image: linear-gradient(315deg, #16556e, #1e4058);
     display: inline;
     border-radius: 23px;
     font-size: 10px;

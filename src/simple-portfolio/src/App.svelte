@@ -1,5 +1,38 @@
 <script>
-    import {fly, fade} from 'svelte/transition'
+    import {fly, fade, crossfade} from 'svelte/transition'
+    import { flip } from 'svelte/animate';
+    import { quintOut } from 'svelte/easing';
+
+    // animation
+
+    const [send, receive] = crossfade({
+        duration: d => Math.sqrt(d * 200),
+
+        fallback(node, params) {
+            const style = getComputedStyle(node);
+            const transform = style.transform === 'none' ? '' : style.transform;
+
+            return {
+                duration: 600,
+                easing: quintOut,
+                css: t => `
+					transform: ${transform} scale(${t});
+					opacity: ${t}
+				`
+            };
+        }
+    });
+
+    let techStack = []
+    let currentSelProject
+
+    function add(element) {
+        techStack = [element, ...techStack];
+    }
+
+
+
+
     // props data
     export let author
     export let position
@@ -15,11 +48,29 @@
         return projects.filter(d => d.name === name)[0].visible
     }
 
+    let id = 0
     function toggleProjectVisibility(name) {
 
         const index = projects.findIndex(p => p.name === name)
-        projects[index].visible = !projects[index].visible
+        const project = projects[index]
+        project.visible = !project.visible
+        if(project.visible) {
+            currentSelProject = project
+            addTechToBuffer(project.tech)
+        }
+        else {
+            techStack = []
+        }
+    }
 
+    function addTechToBuffer(techArr) {
+        techStack = []
+        if(!currentSelProject) return
+
+        let i;
+        for (i = 0; i < currentSelProject.tech.length; i++) {
+            add(currentSelProject.tech[i])
+        }
     }
 
     function closeAllVisibilityExcept(name) {
@@ -46,7 +97,7 @@
 </script>
 <main>
     <div class="row">
-        <div class="col">
+        <div class="col-left">
             <div class="author-card">
                 <div class="author" transition:fade>{author}</div>
                 <div class="position">{position}</div>
@@ -63,7 +114,7 @@
     </div> <!-- close flex container -->
     {#if pageLoaded}
         <div class="row mt-4">
-            <div class="col" transition:fly="{{ x: -200, duration: 300}}">
+            <div class="col-left" transition:fly="{{ x: -200, duration: 300}}">
                 <div class="projects-title" transition:fly>Projects</div>
 
                 {#each projects as {name, description, id, github, website}}
@@ -96,11 +147,41 @@
                     </div> <!-- close project container -->
                 {/each}
             </div> <!-- close col -->
-            <div class="col">
-                <span class="card">NET Core MVC</span>
-                <span class="card">NET Core MVC</span>
+            <div class="col-right">
+                <div class="board">
+                {#each techStack as tech (tech)}
+
+                        <div class="card"
+                                in:receive="{{key: tech}}"
+                                out:send="{{key: tech}}"
+                                animate:flip>
+                            {tech}
+                        </div>
+                {/each}
+                </div>
             </div>
 
         </div> <!-- close row -->
     {/if}
 </main>
+
+<style>
+    .board {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1em;
+        max-width: 36em;
+        margin: 3rem auto;
+    }
+    label {
+        position: relative;
+        line-height: 1.2;
+        padding: 0.5em 2.5em 0.5em 2em;
+        margin: 0 0 0.5em 0;
+        border-radius: 2px;
+        user-select: none;
+        border: 1px solid hsl(240, 8%, 70%);
+        background-color:hsl(240, 8%, 93%);
+        color: #333;
+    }
+</style>
