@@ -1,7 +1,7 @@
 <script>
     import {fly, fade, crossfade} from 'svelte/transition'
-    import { flip } from 'svelte/animate';
-    import { quintOut } from 'svelte/easing';
+    import {flip} from 'svelte/animate';
+    import {quintOut} from 'svelte/easing';
 
     // animation
 
@@ -31,8 +31,6 @@
     }
 
 
-
-
     // props data
     export let author
     export let position
@@ -49,23 +47,23 @@
     }
 
     let id = 0
+
     function toggleProjectVisibility(name) {
 
         const index = projects.findIndex(p => p.name === name)
         const project = projects[index]
         project.visible = !project.visible
-        if(project.visible) {
+        if (project.visible) {
             currentSelProject = project
             addTechToBuffer(project.tech)
-        }
-        else {
+        } else {
             techStack = []
         }
     }
 
     function addTechToBuffer(techArr) {
         techStack = []
-        if(!currentSelProject) return
+        if (!currentSelProject) return
 
         let i;
         for (i = 0; i < currentSelProject.tech.length; i++) {
@@ -149,15 +147,15 @@
             </div> <!-- close col -->
             <div class="col-right">
                 <div class="board">
-                {#each techStack as tech (tech)}
+                    {#each techStack as tech(tech)}
 
                         <div class="card"
-                                in:receive="{{key: tech}}"
-                                out:send="{{key: tech}}"
-                                animate:flip>
+                             in:receive="{{key: tech}}"
+                             out:send="{{key: tech}}"
+                             animate:flip>
                             {tech}
                         </div>
-                {/each}
+                    {/each}
                 </div>
             </div>
 
@@ -173,6 +171,7 @@
         max-width: 36em;
         margin: 3rem auto;
     }
+
     label {
         position: relative;
         line-height: 1.2;
@@ -181,7 +180,7 @@
         border-radius: 2px;
         user-select: none;
         border: 1px solid hsl(240, 8%, 70%);
-        background-color:hsl(240, 8%, 93%);
+        background-color: hsl(240, 8%, 93%);
         color: #333;
     }
 </style>
