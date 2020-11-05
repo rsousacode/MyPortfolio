@@ -45,54 +45,58 @@
 
 </script>
 <main>
-  <div class="flex-container">
-    <div class="flex-item">
-      <div class="author-card">
-        <div class="author" transition:fade>{author}</div>
-        <div class="position">{position}</div>
-        <a href="{github}" target="_blank" class="link ml-4">
-          <img alt="github" src="/icons/github-alt.svg" class="icon"/>
-        </a>
-        <a href="{linkedin}" target="_blank" class="link ml-4">
-          <img alt="linkedin" src="/icons/linkedin.svg" class="icon"/>
-        </a>
-        <a href="{twitter}" target="_blank" class="link ml-4"><img alt="twitter" src="/icons/twitter.svg" class="icon"/></a>
-      </div>
-    </div> <!-- close flex item-->
+  <div class="row">
+    <div class="col">
+      <div class="flex-item">
+        <div class="author-card">
+          <div class="author" transition:fade>{author}</div>
+          <div class="position">{position}</div>
+          <a href="{github}" target="_blank" class="link ml-4">
+            <img alt="github" src="/icons/github-alt.svg" class="icon"/>
+          </a>
+          <a href="{linkedin}" target="_blank" class="link ml-4">
+            <img alt="linkedin" src="/icons/linkedin.svg" class="icon"/>
+          </a>
+          <a href="{twitter}" target="_blank" class="link ml-4"><img alt="twitter" src="/icons/twitter.svg" class="icon"/></a>
+        </div> <!-- close author card-->
+      </div> <!-- close flex item-->
+    </div> <!-- close flex col-->
   </div> <!-- close flex container -->
   {#if pageLoaded}
-    <div class="flex-container mt-4" transition:fly="{{ x: -200, duration: 300}}">
-      <div class="flex-item">
-        <div class="projects-title" transition:fly>Projects</div>
+    <div class="row mt-4" >
+      <div class="col" transition:fly="{{ x: -200, duration: 300}}">
+        <div class="flex-item">
+          <div class="projects-title" transition:fly>Projects</div>
 
-        {#each projects as {name, description, id, github, website}}
-          <div class="project-container" data-flip-key={id} data-flip-no-scale transition:fade="{{x: -100, delay: 500 + 260 * (id + 1)}}">
-            <h2 class="project-title mb-1" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
-              {name}</h2>
-            <div class="details">
-              {#if getProjectVisibility(name)}
-                <div >
-                  <p in:fly="{{ x: -100, duration: 700, delay: 500 }}" out:fade>{description}</p>
-                  <div class="mt-1" in:fly="{{ y: -35, duration: 700, delay: 1500 }}" out:fade>
-                  <a href="{github}"
-                     target="_blank" class="link mr-2"><img alt="github" src="/icons/github-alt.svg"
-                                                       class="icon"/>
-                    <span class="link">GitHub</span>
-                  </a>
-                  {#if website !== ''}
-                    <a href="{website}"
-                       target="_blank" class="link"><img alt="website" src="/icons/web.svg"
-                                                         class="icon"/>
-                      <span class="link">Website</span>
-                    </a>
-                  {/if}
+          {#each projects as {name, description, id, github, website}}
+            <div class="project-container" data-flip-key={id} data-flip-no-scale transition:fade="{{x: -100, delay: 500 + 260 * (id + 1)}}">
+              <h2 class="project-title mb-1" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
+                {name}</h2>
+              <div class="details">
+                {#if getProjectVisibility(name)}
+                  <div >
+                    <p in:fly="{{ x: -100, duration: 700, delay: 500 }}" out:fade>{description}</p>
+                    <div class="mt-1" in:fly="{{ y: -35, duration: 700, delay: 1500 }}" out:fade>
+                      <a href="{github}"
+                         target="_blank" class="link mr-2"><img alt="github" src="/icons/github-alt.svg"
+                                                                class="icon"/>
+                        <span class="link">GitHub</span>
+                      </a>
+                      {#if website !== ''}
+                        <a href="{website}"
+                           target="_blank" class="link"><img alt="website" src="/icons/web.svg"
+                                                             class="icon"/>
+                          <span class="link">Website</span>
+                        </a>
+                      {/if}
+                    </div>
                   </div>
-                </div>
-              {/if}
-            </div> <!-- close class details -->
-          </div> <!-- close class stuff -->
-        {/each}
-      </div> <!-- close class flex item -->
-    </div> <!-- close class flex container -->
+                {/if}
+              </div> <!-- close class details -->
+            </div> <!-- close project-details -->
+          {/each}
+        </div> <!-- close class flex item -->
+      </div>
+    </div> <!-- close class flex row -->
   {/if}
 </main>
