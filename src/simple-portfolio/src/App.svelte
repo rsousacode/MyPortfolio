@@ -1,6 +1,5 @@
 <script>
     import {fly, fade} from 'svelte/transition'
-    import TypeWriter from 'svelte-typewriter'
     // props data
     export let author
     export let position
@@ -9,10 +8,7 @@
     export let linkedin
     export let github
 
-    // auxiliar
-    let termPrompt = '> '
     let pageLoaded = false
-    let timeouts = []
 
     // functions
     function getProjectVisibility(name) {
@@ -49,7 +45,7 @@
 
 </script>
 <main>
-  <div class="flex-container mt-3">
+  <div class="flex-container">
     <div class="flex-item">
       <div class="author-card">
         <div class="author" transition:fade>{author}</div>
@@ -70,20 +66,19 @@
         <div class="projects-title" transition:fly>Projects</div>
 
         {#each projects as {name, description, id, github, website}}
-          <div class="stuff" data-flip-key={id} data-flip-no-scale transition:fade="{{x: -100, delay: 500 + 260 * (id + 1)}}">
-            <h2 class="pointer" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
+          <div class="project-container" data-flip-key={id} data-flip-no-scale transition:fade="{{x: -100, delay: 500 + 260 * (id + 1)}}">
+            <h2 class="project-title mb-1" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
               {name}</h2>
             <div class="details">
               {#if getProjectVisibility(name)}
                 <div >
                   <p in:fly="{{ x: -100, duration: 700, delay: 500 }}" out:fade>{description}</p>
-                  <div in:fly="{{ y: -35, duration: 700, delay: 1500 }}" out:fade>
+                  <div class="mt-1" in:fly="{{ y: -35, duration: 700, delay: 1500 }}" out:fade>
                   <a href="{github}"
-                     target="_blank" class="link"><img alt="github" src="/icons/github-alt.svg"
+                     target="_blank" class="link mr-2"><img alt="github" src="/icons/github-alt.svg"
                                                        class="icon"/>
                     <span class="link">GitHub</span>
                   </a>
-
                   {#if website !== ''}
                     <a href="{website}"
                        target="_blank" class="link"><img alt="website" src="/icons/web.svg"

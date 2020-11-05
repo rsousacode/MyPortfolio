@@ -62,9 +62,8 @@ const flipping = new Flipping({
 
 setTimeout(() => {
     let currentOpenEl;
-    Array.from(document.querySelectorAll(".pointer"), button => {
+    Array.from(document.querySelectorAll(".project-title"), button => {
         let parent = button.parentNode
-        console.log(parent)
         button.addEventListener(
             "click",
             flipping.wrap(() => {
