@@ -65,7 +65,6 @@
   {#if pageLoaded}
     <div class="row mt-4" >
       <div class="col" transition:fly="{{ x: -200, duration: 300}}">
-        <div class="flex-item">
           <div class="projects-title" transition:fly>Projects</div>
 
           {#each projects as {name, description, id, github, website}}
@@ -95,7 +94,6 @@
               </div> <!-- close class details -->
             </div> <!-- close project-details -->
           {/each}
-        </div> <!-- close class flex item -->
       </div>
     </div> <!-- close class flex row -->
   {/if}
