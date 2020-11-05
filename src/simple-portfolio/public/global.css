@@ -29,12 +29,12 @@ body {
 
 .col-left {
     flex: auto;
-    lex-basis: 45%;
+    flex-basis: 55%;
 }
 
 .col-right {
     flex: auto;
-    lex-basis: 65%;
+    flex-basis: 25%;
 }
 
 .author {
@@ -58,12 +58,20 @@ body {
     margin-top: 4rem;
 }
 
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
 .ml-4 {
     margin-left: 0.3rem;
 }
 
 .mr-2 {
     margin-right: 1rem;
+}
+
+.pr-1 {
+    padding-right: 1rem;
 }
 
 /* Link */
@@ -180,6 +188,7 @@ a {
 .card {
     max-width: 100px;
     max-height: 50px;
+    min-width: 76px;
     padding: 9px;
     text-align: center;
     background-image: linear-gradient(315deg, #16556e, #1e4058);

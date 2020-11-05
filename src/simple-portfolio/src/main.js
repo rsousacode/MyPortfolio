@@ -17,7 +17,7 @@ const app = new App({
                 github: 'https://github.com/rsousacode/CommandsAndSnippets',
                 website: '',
                 toggled: false,
-                tech: ['C#', 'NET Core MVC', 'MSSQL', 'Angular', 'Vue.Js', 'Quasar', 'HTML/CSS']
+                tech: ['C#', 'NET Core MVC', 'MSSQL','HTML/CSS', 'Angular', 'Vue.Js', 'Quasar']
             },
             {
                 id: 1,
@@ -26,7 +26,7 @@ const app = new App({
                 github: 'https://github.com/rsousacode/WinterComeBackend',
                 toggled: false,
                 website: 'https://bigmonte.com/projects/wintercome/',
-                tech: ['Node.JS', 'Express', 'Mongoose', 'MongoDB', 'C#']
+                tech: ['Node.JS', 'Express', 'Mongoose', 'MongoDB', 'Unity' , 'C#']
             },
             {
                 id: 2,
@@ -35,7 +35,7 @@ const app = new App({
                 github: 'https://github.com/rsousacode/puryon_backend',
                 toggled: false,
                 website: 'https://bigmonte.com/projects/puryon/',
-                tech: ['Node.JS', 'Express', 'Mongoose', 'MongoDB', 'React.Js', 'C++']
+                tech: ['Node.JS', 'Express', 'Mongoose', 'MongoDB', 'UE4', 'React.Js', 'C++']
 
             },
             {
@@ -47,7 +47,7 @@ const app = new App({
                 github: 'https://github.com/rsousacode/Lusoportunas',
                 toggled: false,
                 website: '',
-                tech: ['Node.JS', 'Express', 'Mongoose', 'MongoDB', 'Pug', 'Passport', 'HTML/CSS']
+                tech: ['Node.JS', 'Express', 'HTML/CSS', 'Mongoose', 'MongoDB', 'Pug', 'Passport']
 
             },
 

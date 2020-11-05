@@ -10,15 +10,10 @@
 
         fallback(node, params) {
             const style = getComputedStyle(node);
-            const transform = style.transform === 'none' ? '' : style.transform;
 
             return {
                 duration: 600,
-                easing: quintOut,
-                css: t => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`
+                easing: quintOut
             };
         }
     });
@@ -46,8 +41,6 @@
         return projects.filter(d => d.name === name)[0].visible
     }
 
-    let id = 0
-
     function toggleProjectVisibility(name) {
 
         const index = projects.findIndex(p => p.name === name)
@@ -57,6 +50,7 @@
             currentSelProject = project
             addTechToBuffer(project.tech)
         } else {
+            currentSelProject = undefined
             techStack = []
         }
     }
@@ -64,7 +58,6 @@
     function addTechToBuffer(techArr) {
         techStack = []
         if (!currentSelProject) return
-
         let i;
         for (i = 0; i < currentSelProject.tech.length; i++) {
             add(currentSelProject.tech[i])
@@ -73,7 +66,6 @@
 
     function closeAllVisibilityExcept(name) {
         toggleProjectVisibility(name)
-
         let i;
         for (i = 0; i < projects.length; i++) {
             const project = projects[i]
@@ -88,7 +80,6 @@
             pageLoaded = true
         }, 800)
     }
-
 
     simulateLoading()
 
@@ -112,7 +103,7 @@
     </div> <!-- close flex container -->
     {#if pageLoaded}
         <div class="row mt-4">
-            <div class="col-left" transition:fly="{{ x: -200, duration: 300}}">
+            <div class="col-left pr-1 mb-2" transition:fly="{{ x: -200, duration: 300}}">
                 <div class="projects-title" transition:fly>Projects</div>
 
                 {#each projects as {name, description, id, github, website}}
@@ -145,21 +136,22 @@
                     </div> <!-- close project container -->
                 {/each}
             </div> <!-- close col -->
-            <div class="col-right">
+            {#if currentSelProject}
+            <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}" out:fly="{{ x: 300, duration: 1000, delay: 600 }}">
+
+                <div class="projects-title mb-2" >Project tech</div>
                 <div class="board">
                     {#each techStack as tech(tech)}
-
                         <div class="card"
-                             in:receive="{{key: tech}}"
-                             out:send="{{key: tech}}"
                              animate:flip>
                             {tech}
                         </div>
                     {/each}
                 </div>
             </div>
-
+            {/if}
         </div> <!-- close row -->
+
     {/if}
 </main>
 
@@ -169,18 +161,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 1em;
         max-width: 36em;
-        margin: 3rem auto;
+        margin: 0rem auto;
     }
 
-    label {
-        position: relative;
-        line-height: 1.2;
-        padding: 0.5em 2.5em 0.5em 2em;
-        margin: 0 0 0.5em 0;
-        border-radius: 2px;
-        user-select: none;
-        border: 1px solid hsl(240, 8%, 70%);
-        background-color: hsl(240, 8%, 93%);
-        color: #333;
-    }
 </style>
