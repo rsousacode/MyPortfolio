@@ -35,7 +35,7 @@
       <recent name="C:\Users\union_breath_positiv\Misc\Development\NodeJS\SimplePortfolio\src\simple-portfolio\public\icons" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Dev run">
+  <component name="RunManager" selected="npm.build">
     <configuration name="Dev run" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/src/simple-portfolio/package.json" />
       <command value="run" />
@@ -103,26 +103,26 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="100" y="123" width="1080" height="577" key="DiffContextDialog/0.23.1280.777@0.23.1280.777" timestamp="1604592986377" />
-    <state width="1259" height="197" key="GridCell.Tab.0.bottom" timestamp="1604608017374">
+    <state width="1259" height="197" key="GridCell.Tab.0.bottom" timestamp="1604608577556">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1604608017374" />
-    <state width="1259" height="197" key="GridCell.Tab.0.center" timestamp="1604608017370">
+    <state width="1259" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1604608577556" />
+    <state width="1259" height="197" key="GridCell.Tab.0.center" timestamp="1604608577555">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1604608017370" />
-    <state width="1259" height="197" key="GridCell.Tab.0.left" timestamp="1604608017368">
+    <state width="1259" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1604608577555" />
+    <state width="1259" height="197" key="GridCell.Tab.0.left" timestamp="1604608577554">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1604608017368" />
-    <state width="1259" height="197" key="GridCell.Tab.0.right" timestamp="1604608017374">
+    <state width="1259" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1604608577554" />
+    <state width="1259" height="197" key="GridCell.Tab.0.right" timestamp="1604608577555">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1604608017374" />
+    <state width="1259" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1604608577555" />
     <state x="982" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604437632771">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
