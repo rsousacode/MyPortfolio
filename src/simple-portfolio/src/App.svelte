@@ -38,13 +38,13 @@
 
     // functions
     function getProjectVisibility(name) {
-        return projects.filter(d => d.name === name)[0].visible
+        return shownProjects.filter(d => d.name === name)[0].visible
     }
 
     function toggleProjectVisibility(name) {
 
-        const index = projects.findIndex(p => p.name === name)
-        const project = projects[index]
+        const index = shownProjects.findIndex(p => p.name === name)
+        const project = shownProjects[index]
         project.visible = !project.visible
         if (project.visible) {
             currentSelProject = project
@@ -67,10 +67,10 @@
     function closeAllVisibilityExcept(name) {
         toggleProjectVisibility(name)
         let i;
-        for (i = 0; i < projects.length; i++) {
-            const project = projects[i]
+        for (i = 0; i < shownProjects.length; i++) {
+            const project = shownProjects[i]
             if (project.name !== name) {
-                projects[i].visible = false
+                shownProjects[i].visible = false
             }
         }
     }
@@ -81,6 +81,50 @@
         }, 800)
     }
 
+    let currentPage = 1
+    let projectsPerPage = 3
+    let shownProjects = []
+
+
+    function initProjects() {
+        let startIndex
+        startIndex = currentPage * projectsPerPage - 3
+
+        if(currentPage === 1){
+            startIndex = 0
+        }
+
+        let t = projectsPerPage * currentPage
+
+        if(projects.length < t) {
+            shownProjects = projects.slice(startIndex)
+        } else {
+            shownProjects = projects.slice(startIndex, projectsPerPage * currentPage)
+        }
+
+    }
+
+    function getMaxNumPages () {
+        if(projects.length % projectsPerPage > 0 ){
+            return Math.floor(projects.length/projectsPerPage) + 1
+        }
+        return projects.length/projectsPerPage
+
+    }
+
+    function nextPage () {
+        currentPage ++
+        initProjects()
+        console.log(shownProjects)
+
+    }
+
+    function previousPage () {
+        currentPage --
+        initProjects()
+    }
+
+    initProjects()
     simulateLoading()
 
 </script>
@@ -106,10 +150,10 @@
             <div class="col-left pr-1 mb-2" transition:fly="{{ x: -200, duration: 300}}">
                 <div class="projects-title" transition:fly>Projects</div>
 
-                {#each projects as {name, description, id, github, website}}
+                {#each shownProjects as {name, description, id, github, website}, i}
                     <div class="project-container" data-flip-key={id} data-flip-no-scale
-                         transition:fade="{{x: -100, delay: 500 + 260 * (id + 1)}}">
-                        <h2 class="project-title mb-1" data-flip-no-scale on:click={closeAllVisibilityExcept(name)}>
+                         transition:fade="{{x: -100, delay: 500 + 260 * (i + 1)}}">
+                        <h2 class="project-title mb-1" data-flip-no-scale on:click={closeAllVisibilityExcept(name)} transition:fade>
                             {name}</h2>
                         <div class="details">
                             {#if getProjectVisibility(name)}
@@ -136,6 +180,15 @@
                     </div> <!-- close project container -->
                 {/each}
             </div> <!-- close col -->
+            <div class="col">
+            <p> {currentPage} - {getMaxNumPages()}</p>
+                {#if currentPage > 1}
+                <button on:click={previousPage}>Previous Page</button>
+                 {/if}
+                {#if getMaxNumPages() != currentPage}
+                <button on:click={nextPage}>Next Page</button>
+                {/if}
+            </div>
             {#if currentSelProject}
             <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}" out:fly="{{ x: 300, duration: 1000, delay: 600 }}">
 
