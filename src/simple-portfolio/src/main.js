@@ -56,31 +56,5 @@ const app = new App({
 });
 
 
-const flipping = new Flipping({
-    easing: "cubic-bezier(.01, 0, .5, 1)"
-});
-
-setTimeout(() => {
-    let currentOpenEl;
-    Array.from(document.querySelectorAll(".project-title"), button => {
-        let parent = button.parentNode
-        button.addEventListener(
-            "click",
-            flipping.wrap(() => {
-
-                if (parent.dataset.open) {
-                    delete parent.dataset.open;
-                    currentOpenEl = null;
-                } else {
-                    parent.dataset.open = true;
-                    if (currentOpenEl) {
-                        delete currentOpenEl.dataset.open;
-                    }
-                    currentOpenEl = parent;
-                }
-            }));
-    });
-}, 850)
-
 
 export default app;
