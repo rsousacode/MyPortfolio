@@ -107,7 +107,7 @@
             </div>
             <TechStack/>
         </div>
-            <ul class="pagination">
+            <ul class="pagination" transition:fly="{{ x: 200, duration: 500, delay: 2000}}">
                 <li on:click= {getMaxNumPages() !== currentPage ? nextPage : previousPage }>
                     {currentPage} / {getMaxNumPages()}
                 </li>
