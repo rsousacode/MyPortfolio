@@ -1,4 +1,4 @@
-import {writable} from "svelte/store";
+import { writable } from "svelte/store";
 
 let uuid = 0
 const ProjectsStore = writable(
@@ -55,6 +55,5 @@ const ProjectsStore = writable(
             tech: ['Node.JS', 'Express', 'HTML/CSS', 'Mongoose', 'MongoDB', 'Pug', 'Passport']
 
         }
-
     ])
 export default ProjectsStore

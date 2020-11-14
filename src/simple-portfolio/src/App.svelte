@@ -1,20 +1,17 @@
 <script>
-
-    import {fly, fade} from 'svelte/transition'
-    import {flip} from 'svelte/animate';
+    import {fly} from 'svelte/transition'
 
     // Components
     import AuthorCard from './components/AuthorCard.svelte'
     import Projects from "./components/Projects.svelte";
+    import TechStack from "./components/TechStack.svelte";
 
     // Stores
     import ProjectsStore from "./stores/ProjectsStore";
-    import TechStackStore, {cleanTechStack} from "./stores/TechStackStore";
+    import {cleanTechStack} from "./stores/TechStackStore";
 
     // Store Data
     let projectsData
-    let techStack
-
     let hideProjects = false
     let pageLoaded = false
 
@@ -26,11 +23,6 @@
     ProjectsStore.subscribe((data) => {
         projectsData = data
     })
-
-    TechStackStore.subscribe(data => {
-        techStack = data
-    })
-
 
     function initProjects() {
         closeAllProjects()
@@ -57,7 +49,6 @@
         }
     }
 
-
     function simulateLoading(exec) {
         setTimeout(() => {
             exec()
@@ -83,23 +74,20 @@
     }
 
     function nextPage() {
-        onPageSwitched()
         currentPage++
-        initProjects()
-        simulateLoading(onPageSwitchedEndLoading)
+        onPageSwitched()
     }
 
     function previousPage() {
-        onPageSwitched()
         currentPage--
-        initProjects()
-        simulateLoading(onPageSwitchedEndLoading)
+        onPageSwitched()
     }
 
     function onPageSwitched() {
+        initProjects()
         hideProjects = true
         cleanTechStack()
-
+        simulateLoading(onPageSwitchedEndLoading)
     }
 
     initProjects()
@@ -131,32 +119,7 @@
                     <button on:click={nextPage}>Next Page</button>
                 {/if}
             </div>
-            {#if techStack.length > 0}
-                <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}"
-                     out:fly="{{ x: 300, duration: 1000, delay: 600 }}">
-
-                    <div class="projects-title mb-2">Project tech</div>
-                    <div class="board">
-                        {#each techStack as tech(tech)}
-                            <div class="card"
-                                 animate:flip>
-                                {tech}
-                            </div>
-                        {/each}
-                    </div>
-                </div>
-            {/if}
+            <TechStack/>
         </div> <!-- close row -->
     {/if}
 </main>
-
-<style>
-    .board {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 1em;
-        max-width: 36em;
-        margin: 0rem auto;
-    }
-
-</style>

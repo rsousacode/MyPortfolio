@@ -1,6 +1,6 @@
 <script>
     import {fade} from 'svelte/transition'
-    import {onMount, beforeUpdate, afterUpdate, onDestroy} from 'svelte';
+    import {onMount, onDestroy} from 'svelte';
     import ProjectDetails from "./ProjectDetails.svelte";
     import TechStackStore, { cleanTechStack } from "../stores/TechStackStore";
 
@@ -51,7 +51,6 @@
 
     onMount(() => {
         mapButtons()
-        console.log(projectsElements)
     })
 
     onDestroy (() => {
@@ -72,7 +71,6 @@
 
 
     function toggleProjectVisibility(name) {
-
         const index = projects.findIndex(p => p.name === name)
         const project = projects[index]
         project.toggled = !project.toggled
