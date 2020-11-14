@@ -4,6 +4,7 @@ import {fly, fade, crossfade} from 'svelte/transition'
     import {flip} from 'svelte/animate';
     import {quintOut} from 'svelte/easing';
     import { onMount, beforeUpdate, afterUpdate } from 'svelte';
+    import AuthorCard from './AuthorCard.svelte'
 
     // animation
 
@@ -234,18 +235,7 @@ function mapButtons () {
 <main>
     <div class="row">
         <div class="col-left">
-            <div class="author-card">
-                <div class="author" transition:fade>{author}</div>
-                <div class="position">{position}</div>
-                <a href="{github}" target="_blank" class="link ml-4">
-                    <img alt="github" src="/icons/github-alt.svg" class="icon"/>
-                </a>
-                <a href="{linkedin}" target="_blank" class="link ml-4">
-                    <img alt="linkedin" src="/icons/linkedin.svg" class="icon"/>
-                </a>
-                <a href="{twitter}" target="_blank" class="link ml-4"><img alt="twitter" src="/icons/twitter.svg"
-                                                                           class="icon"/></a>
-            </div> <!-- close author card-->
+            <AuthorCard author={author}, github={github}, linkedin={linkedin}, position={position}, twitter={twitter}/>
         </div> <!-- close flex col-->
     </div> <!-- close flex container -->
     {#if pageLoaded}
