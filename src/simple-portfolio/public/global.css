@@ -31,6 +31,10 @@ body {
     flex-basis: 55%;
 }
 
+.projects {
+    min-height: 350px;
+}
+
 .col-right {
     flex-basis: 25%;
 }
