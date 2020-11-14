@@ -144,8 +144,18 @@ import {fly, fade, crossfade} from 'svelte/transition'
 
     }
 
+function eventFire(el, etype){
+    if (el.fireEvent) {
+        el.fireEvent('on' + etype);
+    } else {
+        var evObj = document.createEvent('Events');
+        evObj.initEvent(etype, true, false);
+        el.dispatchEvent(evObj);
+    }
+}
 
     function nextPage() {
+
         onPageSwitched()
         currentPage++
         initProjects()
@@ -155,17 +165,13 @@ import {fly, fade, crossfade} from 'svelte/transition'
     
 
     function previousPage() {
-        showStack = false
-
         onPageSwitched()
         currentPage--
         initProjects()
         simulateLoading(onPageSwitchedEndLoading)
     }
 
-    let showStack = true
     function onPageSwitched () {
-        showStack = false
         projectsElements = []
         currentSelProject = undefined
         techStack = []
@@ -192,6 +198,9 @@ import {fly, fade, crossfade} from 'svelte/transition'
     });
 
 let currentOpenEl;
+let flipping = new Flipping({
+    easing: "cubic-bezier(.01, 0, .5, 1)"
+});
 
 function mapButtons () {
     currentOpenEl = null
@@ -245,7 +254,7 @@ function mapButtons () {
                 <div class="projects-title" transition:fly>Projects</div>
                 {#if !hideProjects}
                     {#each shownProjects as {name, description, id, github, website}, i}
-                        <div class="project-container" data-flip-key={id} bind:this={els[elsCount()]} data-flip-no-scale
+                        <div class="project-container" data-flip-key={id} data-flip-no-scale
                              in:fade="{{x: -100, delay: 500 + 260 * (i + 1)}}">
                             <h2 class="project-title mb-1" data-flip-no-scale bind:this={projectsElements[projectElementsCount()]}  on:click={closeAllVisibilityExcept(name)}
                                 transition:fade  >
@@ -285,7 +294,7 @@ function mapButtons () {
                     <button on:click={nextPage}>Next Page</button>
                 {/if}
             </div>
-            {#if showStack}
+            {#if currentSelProject}
                 <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}"
                      out:fly="{{ x: 300, duration: 1000, delay: 600 }}">
 
