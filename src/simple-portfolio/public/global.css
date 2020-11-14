@@ -31,12 +31,9 @@ body {
     flex: auto;
 }
 
-.projects {
-    min-height: 400px;
-}
-
 .col-right {
     flex-basis: 25%;
+    min-height: 220px;
 }
 
 .author {

@@ -14,7 +14,7 @@
 
 {#if techStack.length > 0}
     <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}"
-         out:fly="{{ x: 300, duration: 1000, delay: 600 }}">
+         out:fly="{{ x: 300, duration: 600 }}">
 
         <div class="projects-title mb-2">Project tech</div>
         <div class="board">

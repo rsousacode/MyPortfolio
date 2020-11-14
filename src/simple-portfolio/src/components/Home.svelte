@@ -98,7 +98,7 @@
     <Author/>
     {#if pageLoaded}
         <div class="row mt-4">
-            <div class="col-left projects pr-1 mb-2" transition:fly="{{ x: -200, duration: 300}}">
+            <div class="col-left projects pr-1 mb-2" transition:fly="{{ x: -200, duration: 500}}">
                 <div class="projects-title" transition:fly>Projects</div>
                 {#if !hideProjects}
                     <Projects projects={shownProjects}/>
@@ -122,9 +122,12 @@
 
 <style>
     ul.pagination {
+        position: fixed;
         display: inline-block;
         padding: 0;
         margin: 0;
+        bottom: 3%;
+        left: 80%;
         float: right;
     }
 
