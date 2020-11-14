@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="3" />
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98b754f2-0bbc-47ed-80be-86844e7b8fb1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/simple-portfolio/src/AuthorCard.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/simple-portfolio/src/components/AuthorCard.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/simple-portfolio/src/components/Projects.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/simple-portfolio/src/stores/AuthorStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/simple-portfolio/src/stores/ProjectsStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/simple-portfolio/src/stores/TechStackStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/simple-portfolio/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/simple-portfolio/src/App.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simple-portfolio/src/AuthorCard.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simple-portfolio/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/simple-portfolio/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +39,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AuthorCard" />
+        <option value="ProjectDetails" />
+        <option value="ProjectsContainer" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -38,6 +63,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/simple-portfolio/src/components" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\union_breath_positiv\Misc\Development\NodeJS\SimplePortfolio\src\simple-portfolio\public\icons" />
     </key>
@@ -111,35 +139,35 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="844" y="261" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1604428020195" />
-    <state x="607" y="304" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604585092971">
+    <state x="607" y="304" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605361562294">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="911" y="380" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1050@0.0.1920.1050" timestamp="1604436185769" />
-    <state x="607" y="304" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1280.777@0.23.1280.777" timestamp="1604585092971" />
+    <state x="607" y="304" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1280.777@0.23.1280.777" timestamp="1605361562294" />
     <state x="100" y="123" width="1080" height="577" key="DiffContextDialog" timestamp="1604592986377">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="100" y="123" width="1080" height="577" key="DiffContextDialog/0.23.1280.777@0.23.1280.777" timestamp="1604592986377" />
-    <state width="1259" height="197" key="GridCell.Tab.0.bottom" timestamp="1605360111567">
+    <state width="1259" height="197" key="GridCell.Tab.0.bottom" timestamp="1605365165315">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1605360111567" />
-    <state width="1259" height="197" key="GridCell.Tab.0.center" timestamp="1605360111566">
+    <state width="1259" height="197" key="GridCell.Tab.0.bottom/0.23.1280.777@0.23.1280.777" timestamp="1605365165315" />
+    <state width="1259" height="197" key="GridCell.Tab.0.center" timestamp="1605365165314">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1605360111566" />
-    <state width="1259" height="197" key="GridCell.Tab.0.left" timestamp="1605360111566">
+    <state width="1259" height="197" key="GridCell.Tab.0.center/0.23.1280.777@0.23.1280.777" timestamp="1605365165314" />
+    <state width="1259" height="197" key="GridCell.Tab.0.left" timestamp="1605365165313">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1605360111566" />
-    <state width="1259" height="197" key="GridCell.Tab.0.right" timestamp="1605360111567">
+    <state width="1259" height="197" key="GridCell.Tab.0.left/0.23.1280.777@0.23.1280.777" timestamp="1605365165313" />
+    <state width="1259" height="197" key="GridCell.Tab.0.right" timestamp="1605365165314">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1487" height="282" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1604472473463" />
-    <state width="1259" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1605360111567" />
+    <state width="1259" height="197" key="GridCell.Tab.0.right/0.23.1280.777@0.23.1280.777" timestamp="1605365165314" />
     <state width="1259" height="246" key="GridCell.Tab.1.bottom" timestamp="1604643992913">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
@@ -188,10 +216,10 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state width="1259" height="246" key="GridCell.Tab.3.right/0.23.1280.777@0.23.1280.777" timestamp="1604643992919" />
-    <state x="100" y="123" width="1080" height="577" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605358366304">
+    <state x="100" y="123" width="1080" height="577" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605363621715">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
-    <state x="100" y="123" width="1080" height="577" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1605358366304" />
+    <state x="100" y="123" width="1080" height="577" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1280.777@0.23.1280.777" timestamp="1605363621715" />
     <state x="982" y="439" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604437632771">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -204,9 +232,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="820" y="245" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1604471613028" />
-    <state x="827" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1604471607731">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="551" y="194" width="670" height="502" key="search.everywhere.popup" timestamp="1605365046867">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="827" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1604471607731" />
+    <state x="551" y="194" width="670" height="502" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1605365046867" />
   </component>
 </project>
