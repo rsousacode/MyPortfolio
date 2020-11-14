@@ -1,5 +1,6 @@
 <script>
-    import {fly, fade, crossfade} from 'svelte/transition'
+
+import {fly, fade, crossfade} from 'svelte/transition'
     import {flip} from 'svelte/animate';
     import {quintOut} from 'svelte/easing';
     import { onMount, beforeUpdate, afterUpdate } from 'svelte';
@@ -37,19 +38,23 @@
 
     let pageLoaded = false
 
+    export let el
+
     // functions
     function getProjectVisibility(name) {
-        return shownProjects.filter(d => d.name === name)[0].visible
+        console.log('visibility ' + name + '=' + shownProjects.filter(d => d.name === name)[0].toggled)
+        return shownProjects.filter(d => d.name === name)[0].toggled
     }
 
     function toggleProjectVisibility(name) {
 
         const index = shownProjects.findIndex(p => p.name === name)
         const project = shownProjects[index]
-        project.visible = !project.visible
-        if (project.visible) {
+        project.toggled = !project.toggled
+        if (project.toggled) {
             currentSelProject = project
             addTechToBuffer(project.tech)
+            console.log(project)
         } else {
             currentSelProject = undefined
             techStack = []
@@ -66,14 +71,33 @@
     }
 
     function closeAllVisibilityExcept(name) {
+        console.log('toggling')
         toggleProjectVisibility(name)
         let i;
         for (i = 0; i < shownProjects.length; i++) {
             const project = shownProjects[i]
             if (project.name !== name) {
-                shownProjects[i].visible = false
+                shownProjects[i].toggled = false
             }
         }
+     /*   const flipping = new Flipping({
+            easing: "cubic-bezier(.01, 0, .5, 1)"
+        });
+        let currentOpenEl
+        flipping.wrap(() => {
+            console.log('inside wrap')
+
+            if (els[0].dataset.open) {
+                delete els[0].dataset.open;
+                currentOpenEl = null;
+            } else {
+                els[0].dataset.open = true;
+                if (currentOpenEl) {
+                    delete currentOpenEl.dataset.open;
+                }
+                currentOpenEl = els[0];
+            }
+        })*/
     }
 
     let transitioning = false // We use this flag to refresh flipping when the dom is updated
@@ -84,6 +108,12 @@
             exec()
             transitioning = false
         }, 800)
+        setTimeout(() => {
+            console.log(elsChilds)
+            mapButtons()
+        }, 820)
+
+
     }
 
     function onPageLoaded() {
@@ -111,6 +141,7 @@
         } else {
             shownProjects = projects.slice(startIndex, projectsPerPage * currentPage)
         }
+        console.log(shownProjects)
 
     }
 
@@ -125,70 +156,83 @@
 
     function onPageSwitched() {
         hideProjects = false
-        initProjects()
     }
 
 
     function nextPage() {
+        elsChilds = []
         hideProjects = true
         currentPage++
+        initProjects()
         simulateLoading(onPageSwitched)
 
     }
 
     function previousPage() {
+        elsChilds = []
         hideProjects = true
         currentPage--
+        initProjects()
         simulateLoading(onPageSwitched)
     }
 
     initProjects()
     simulateLoading(onPageLoaded)
 
-    let pointerDoms = []
 
     beforeUpdate(async () => {
-        console.log(pointerDoms)
 
     });
 
-    afterUpdate(async () => {
-        console.log(pointerDoms)
+    export let els = []
+    export let elsChilds = []
+
+    function elsCount () {
+        return els.length
+    }
+
+    function elsChildCount () {
+        return elsChilds.length
+    }
+    afterUpdate (async () => {
+
     });
+let currentOpenEl;
+let flipping = new Flipping({
+    easing: "cubic-bezier(.01, 0, .5, 1)"
+});
 
+function mapButtons () {
+    currentOpenEl = null
+    let validElements = elsChilds.filter(el => el !== null).map(el => el);
+    console.log(validElements)
+    validElements.map( button => {
+            if(currentOpenEl) return
+            button.hasListener = true
+            let parent = button.parentNode
+            console.log('checking button')
+            button.addEventListener(
+                "click",
+                flipping.wrap(() => {
+                    console.log('inside wrap')
 
-
-    onMount(async () => {
-        console.log('on mount')
-        const flipping = new Flipping({
-            easing: "cubic-bezier(.01, 0, .5, 1)"
-        });
-
-        setTimeout(() => {
-            let currentOpenEl;
-            Array.from(document.querySelectorAll(".project-title"), button => {
-                let parent = button.parentNode
-                button.addEventListener(
-                    "click",
-                    flipping.wrap(() => {
-
-                        if (parent.dataset.open) {
-                            delete parent.dataset.open;
-                            currentOpenEl = null;
-                        } else {
-                            parent.dataset.open = true;
-                            if (currentOpenEl) {
-                                delete currentOpenEl.dataset.open;
-                            }
-                            currentOpenEl = parent;
+                    if (parent.dataset.open) {
+                        delete parent.dataset.open;
+                        currentOpenEl = null;
+                    } else {
+                        parent.dataset.open = true;
+                        if (currentOpenEl) {
+                            delete currentOpenEl.dataset.open;
                         }
-                    }));
-            });
-        }, 850)
+                        currentOpenEl = parent;
+                    }
+                }));
+        });
+}
 
+   onMount(() => {
 
-    });
-
+   })
 </script>
 <main>
     <div class="row">
@@ -213,9 +257,9 @@
                 <div class="projects-title" transition:fly>Projects</div>
                 {#if !hideProjects}
                     {#each shownProjects as {name, description, id, github, website}, i}
-                        <div class="project-container" data-flip-key={id} data-flip-no-scale
+                        <div class="project-container" data-flip-key={id} bind:this={els[elsCount()]} data-flip-no-scale
                              in:fade="{{x: -100, delay: 500 + 260 * (i + 1)}}">
-                            <h2 class="project-title mb-1" data-flip-no-scale  on:click={closeAllVisibilityExcept(name)}
+                            <h2 class="project-title mb-1" data-flip-no-scale bind:this={elsChilds[elsChildCount()]}  on:click={closeAllVisibilityExcept(name)}
                                 transition:fade  >
                                 {name}</h2>
                             <div class="details">
