@@ -28,7 +28,7 @@ body {
 }
 
 .col-left {
-    flex-basis: 55%;
+    flex: auto;
 }
 
 .projects {
