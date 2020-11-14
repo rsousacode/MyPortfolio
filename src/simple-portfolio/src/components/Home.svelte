@@ -125,6 +125,7 @@
         display: inline-block;
         padding: 0;
         margin: 0;
+        float: right;
     }
 
     ul.pagination li {display: inline;}

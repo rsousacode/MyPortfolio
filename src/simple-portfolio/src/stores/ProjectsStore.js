@@ -55,7 +55,7 @@ const ProjectsStore = writable(
         {
             id: uuid++,
             name: 'Frutas ao Combate',
-            description: 'Frutas ao Combate is a game with a sublime attempt to combat various health problems. Make as many points against health-damaging food and system disorders as possible. Made in 48h for the Games for Good jam.',
+            description: 'Frutas ao Combate is a game with a sublime attempt to combat various health problems. Make as many points against health-damaging food as much as possible. Made in 48h for the Games for Good jam.',
             github: '',
             toggled: false,
             website: 'https://bigmonte-studios.itch.io/frutas-ao-combate',
