@@ -1,6 +1,6 @@
 import App from './App.svelte';
 
-let uuid = -1
+let uuid = 0
 const app = new App({
     target: document.body,
     props: {
@@ -50,6 +50,18 @@ const app = new App({
                 tech: ['Node.JS', 'Express', 'HTML/CSS', 'Mongoose', 'MongoDB', 'Pug', 'Passport']
 
             },
+            {
+                id: uuid++,
+                name: 'other project',
+                description: 'Streamlines the job finding process '
+                    + 'and has a comprehensive dashboard for recruiters and job seekers with a communication'
+                    + 'platform that allows both to connect easily.',
+                github: 'https://github.com/rsousacode/Lusoportunas',
+                toggled: false,
+                website: '',
+                tech: ['Node.JS', 'Express', 'HTML/CSS', 'Mongoose', 'MongoDB', 'Pug', 'Passport']
+
+            }
 
         ]
     }

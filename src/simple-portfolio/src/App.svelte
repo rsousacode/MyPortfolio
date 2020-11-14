@@ -42,7 +42,6 @@ import {fly, fade, crossfade} from 'svelte/transition'
 
     // functions
     function getProjectVisibility(name) {
-        console.log('visibility ' + name + '=' + shownProjects.filter(d => d.name === name)[0].toggled)
         return shownProjects.filter(d => d.name === name)[0].toggled
     }
 
@@ -54,14 +53,13 @@ import {fly, fade, crossfade} from 'svelte/transition'
         if (project.toggled) {
             currentSelProject = project
             addTechToBuffer(project.tech)
-            console.log(project)
         } else {
             currentSelProject = undefined
             techStack = []
         }
     }
 
-    function addTechToBuffer(techArr) {
+    function addTechToBuffer() {
         techStack = []
         if (!currentSelProject) return
         let i;
@@ -71,7 +69,6 @@ import {fly, fade, crossfade} from 'svelte/transition'
     }
 
     function closeAllVisibilityExcept(name) {
-        console.log('toggling')
         toggleProjectVisibility(name)
         let i;
         for (i = 0; i < shownProjects.length; i++) {
@@ -80,24 +77,13 @@ import {fly, fade, crossfade} from 'svelte/transition'
                 shownProjects[i].toggled = false
             }
         }
-     /*   const flipping = new Flipping({
-            easing: "cubic-bezier(.01, 0, .5, 1)"
-        });
-        let currentOpenEl
-        flipping.wrap(() => {
-            console.log('inside wrap')
+    }
 
-            if (els[0].dataset.open) {
-                delete els[0].dataset.open;
-                currentOpenEl = null;
-            } else {
-                els[0].dataset.open = true;
-                if (currentOpenEl) {
-                    delete currentOpenEl.dataset.open;
-                }
-                currentOpenEl = els[0];
-            }
-        })*/
+    function closeAllProjects() {
+        let i
+        for (i = 0; i < shownProjects.length; i++) {
+            shownProjects[i].toggled = false
+        }
     }
 
     let transitioning = false // We use this flag to refresh flipping when the dom is updated
@@ -109,7 +95,6 @@ import {fly, fade, crossfade} from 'svelte/transition'
             transitioning = false
         }, 800)
         setTimeout(() => {
-            console.log(elsChilds)
             mapButtons()
         }, 820)
 
@@ -127,6 +112,7 @@ import {fly, fade, crossfade} from 'svelte/transition'
 
 
     function initProjects() {
+        closeAllProjects()
         let startIndex
         startIndex = currentPage * projectsPerPage - 3
 
@@ -141,7 +127,6 @@ import {fly, fade, crossfade} from 'svelte/transition'
         } else {
             shownProjects = projects.slice(startIndex, projectsPerPage * currentPage)
         }
-        console.log(shownProjects)
 
     }
 
@@ -154,26 +139,38 @@ import {fly, fade, crossfade} from 'svelte/transition'
     }
 
 
-    function onPageSwitched() {
+    function onPageSwitchedEndLoading() {
         hideProjects = false
+
     }
 
 
     function nextPage() {
-        elsChilds = []
-        hideProjects = true
+        onPageSwitched()
         currentPage++
         initProjects()
-        simulateLoading(onPageSwitched)
+        simulateLoading(onPageSwitchedEndLoading)
 
     }
+    
 
     function previousPage() {
-        elsChilds = []
-        hideProjects = true
+        showStack = false
+
+        onPageSwitched()
         currentPage--
         initProjects()
-        simulateLoading(onPageSwitched)
+        simulateLoading(onPageSwitchedEndLoading)
+    }
+
+    let showStack = true
+    function onPageSwitched () {
+        showStack = false
+        projectsElements = []
+        currentSelProject = undefined
+        techStack = []
+        hideProjects = true
+
     }
 
     initProjects()
@@ -184,37 +181,28 @@ import {fly, fade, crossfade} from 'svelte/transition'
 
     });
 
-    export let els = []
-    export let elsChilds = []
+    export let projectsElements = []
 
-    function elsCount () {
-        return els.length
+    function projectElementsCount () {
+        return projectsElements.length
     }
-
-    function elsChildCount () {
-        return elsChilds.length
-    }
+    
     afterUpdate (async () => {
 
     });
+
 let currentOpenEl;
-let flipping = new Flipping({
-    easing: "cubic-bezier(.01, 0, .5, 1)"
-});
 
 function mapButtons () {
     currentOpenEl = null
-    let validElements = elsChilds.filter(el => el !== null).map(el => el);
-    console.log(validElements)
+    let validElements = projectsElements.filter(el => el !== null).map(el => el);
     validElements.map( button => {
             if(currentOpenEl) return
             button.hasListener = true
             let parent = button.parentNode
-            console.log('checking button')
             button.addEventListener(
                 "click",
                 flipping.wrap(() => {
-                    console.log('inside wrap')
 
                     if (parent.dataset.open) {
                         delete parent.dataset.open;
@@ -259,7 +247,7 @@ function mapButtons () {
                     {#each shownProjects as {name, description, id, github, website}, i}
                         <div class="project-container" data-flip-key={id} bind:this={els[elsCount()]} data-flip-no-scale
                              in:fade="{{x: -100, delay: 500 + 260 * (i + 1)}}">
-                            <h2 class="project-title mb-1" data-flip-no-scale bind:this={elsChilds[elsChildCount()]}  on:click={closeAllVisibilityExcept(name)}
+                            <h2 class="project-title mb-1" data-flip-no-scale bind:this={projectsElements[projectElementsCount()]}  on:click={closeAllVisibilityExcept(name)}
                                 transition:fade  >
                                 {name}</h2>
                             <div class="details">
@@ -297,7 +285,7 @@ function mapButtons () {
                     <button on:click={nextPage}>Next Page</button>
                 {/if}
             </div>
-            {#if currentSelProject}
+            {#if showStack}
                 <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}"
                      out:fly="{{ x: 300, duration: 1000, delay: 600 }}">
 
