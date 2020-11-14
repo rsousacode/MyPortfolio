@@ -9,6 +9,7 @@
     // Stores
     import ProjectsStore from "../stores/ProjectsStore";
     import {cleanTechStack} from "../stores/TechStackStore";
+    import {onMount} from "svelte";
 
     // Store Data
     let projectsData
@@ -126,8 +127,8 @@
         display: inline-block;
         padding: 0;
         margin: 0;
-        bottom: 3%;
-        left: 80%;
+        bottom: 5%;
+        left: 75%;
         float: right;
     }
 
@@ -137,10 +138,7 @@
         float: left;
         padding: 4px 8px;
         text-decoration: none;
-        transition: background-color .3s;
-        font-size: 18px;
         cursor: pointer;
     }
 
-    ul.pagination li:hover:not(.active) {background-color: #32698f;}
 </style>

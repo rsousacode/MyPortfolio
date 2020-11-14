@@ -1,5 +1,5 @@
 <script>
-    import {fly} from 'svelte/transition'
+    import {fly, fade} from 'svelte/transition'
     import {flip} from 'svelte/animate';
 
     import TechStackStore from "../stores/TechStackStore";
@@ -13,9 +13,7 @@
 </script>
 
 {#if techStack.length > 0}
-    <div class="col-right" in:fly="{{ x: 300, duration: 1000, delay: 2500 }}"
-         out:fly="{{ x: 300, duration: 600 }}">
-
+    <div class="col-right" in:fade={{delay: 1900}} out:fade>
         <div class="projects-title mb-2">Project tech</div>
         <div class="board">
             {#each techStack as tech(tech)}
