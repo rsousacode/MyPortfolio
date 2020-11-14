@@ -10,7 +10,7 @@ const ProjectsStore = writable(
             github: 'https://github.com/rsousacode/CommandsAndSnippets',
             website: '',
             toggled: false,
-            tech: ['C#', 'NET Core MVC', 'MSSQL', 'HTML/CSS', 'Angular', 'Vue.Js', 'Quasar']
+            tech: ['C#', '.NET', 'EF', 'XUnit', 'MSSQL', 'HTML/CSS', 'Angular', 'Vue.Js', 'Quasar']
         },
         {
             id: uuid++,
@@ -45,15 +45,22 @@ const ProjectsStore = writable(
         },
         {
             id: uuid++,
-            name: 'other project',
-            description: 'Streamlines the job finding process '
-                + 'and has a comprehensive dashboard for recruiters and job seekers with a communication'
-                + 'platform that allows both to connect easily.',
-            github: 'https://github.com/rsousacode/Lusoportunas',
+            name: 'Horizonte',
+            description: 'Horizonte is an open world/rpg game and takes place during the phase of the discoveries. You play an unlikely hero – a 25-year-old circus trainer who is determined to finally change his job to work in Portugal’s royal guard.',
+            github: '',
             toggled: false,
-            website: '',
-            tech: ['Node.JS', 'Express', 'HTML/CSS', 'Mongoose', 'MongoDB', 'Pug', 'Passport']
-
+            website: 'https://bigmonte.com/projects/horizonte/',
+            tech: ['C#', 'Unity', 'Maya', 'Clickup']
+        },
+        {
+            id: uuid++,
+            name: 'Frutas ao Combate',
+            description: 'Frutas ao Combate is a game with a sublime attempt to combat various health problems. Make as many points against health-damaging food and system disorders as possible. Made in 48h for the Games for Good jam.',
+            github: '',
+            toggled: false,
+            website: 'https://bigmonte-studios.itch.io/frutas-ao-combate',
+            tech: ['Unity', 'C#']
         }
+
     ])
 export default ProjectsStore

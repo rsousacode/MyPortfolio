@@ -12,8 +12,8 @@
 
 
 <div class="author-card">
-    <div class="author" transition:fade>{authorData.author}</div>
-    <div class="position">{authorData.position}</div>
+    <div class="author" transition:fade>{authorData.name}</div>
+    <div class="position ml-4">{authorData.position}</div>
     <a href="{authorData.github}" target="_blank" class="link ml-4">
         <img alt="github" src="/icons/github-alt.svg" class="icon"/>
     </a>

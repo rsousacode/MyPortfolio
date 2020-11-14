@@ -1,6 +1,7 @@
 <script>
     import {fly} from 'svelte/transition'
     import {flip} from 'svelte/animate';
+
     import TechStackStore from "../stores/TechStackStore";
 
     let techStack

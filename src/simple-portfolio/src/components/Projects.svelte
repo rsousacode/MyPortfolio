@@ -21,7 +21,6 @@
     }
 
     function mapButtons() {
-        currentOpenEl = null
         let validElements = projectsElements.filter(el => el !== null).map(el => el);
         validElements.map(button => {
             if (currentOpenEl) return
@@ -58,7 +57,7 @@
     })
 
 
-    function closeAllVisibilityExcept(name) {
+    function toggleProject(name) {
         toggleProjectVisibility(name)
         let i;
         for (i = 0; i < projects.length; i++) {
@@ -101,7 +100,7 @@
 {#each projects as {name, description, id, github, website, toggled}, i}
     <div class="project-container" data-flip-key={id} data-flip-no-scale
          in:fade="{{x: -100, delay: 500 + 260 * (i + 1)}}">
-        <h2 class="project-title mb-1" data-flip-no-scale bind:this={projectsElements[projectElementsCount()]}  on:click={closeAllVisibilityExcept(name)}
+        <h2 class="project-title mb-1" data-flip-no-scale bind:this={projectsElements[projectElementsCount()]}  on:click={toggleProject(name)}
             transition:fade  >
             {name}</h2>
         <div class="details">
@@ -111,6 +110,6 @@
                         github={github}
                         website={website}/>
             {/if}
-        </div> <!-- close class details -->
-    </div> <!-- close project container -->
+        </div>
+    </div>
 {/each}

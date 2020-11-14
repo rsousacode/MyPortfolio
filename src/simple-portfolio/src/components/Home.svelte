@@ -107,7 +107,9 @@
             <TechStack/>
         </div>
             <ul class="pagination">
-                <li on:click= {getMaxNumPages() !== currentPage ? nextPage : previousPage }>{currentPage}/{getMaxNumPages()}</li>
+                <li on:click= {getMaxNumPages() !== currentPage ? nextPage : previousPage }>
+                    {currentPage} / {getMaxNumPages()}
+                </li>
                 {#if currentPage > 1}
                     <li on:click={previousPage}>❮</li>
                 {/if}
