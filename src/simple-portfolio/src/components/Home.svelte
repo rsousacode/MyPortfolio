@@ -11,6 +11,9 @@
     import {cleanTechStack} from "../stores/TechStackStore";
     import {onMount} from "svelte";
 
+    export let projects;
+    export let author;
+
     // Store Data
     let projectsData
     let hideProjects = false
@@ -19,11 +22,44 @@
     // Pagination
     let currentPage = 1
     let projectsPerPage = 3
-    let shownProjects = []
+    let shownProjects = [];
+
+    let apiProjectList = [];
+
+    let id = 0;
+
+    for (let i = 0; i < projects.length; i++) {
+        const project = projects[i];
+        let newProject = {};
+        newProject.description = project.excerpt;
+        newProject.id = ++id;
+        newProject.name = project.title;
+        newProject.tech = project.tech;
+        newProject.github = '';
+        newProject.website = '';
+        // if has github
+        for (let i = 0; i < project.urls.length; i++) {
+            const u = project.urls[i];
+            if(u.media_type === "github") {
+                newProject.github = u.url;
+                continue;
+            }
+            if(u.media_type === "website") {
+                newProject.website = u.url;
+            }
+        }
+
+        apiProjectList.push(newProject);
+    }
+
+    ProjectsStore.update((data) => {
+        return apiProjectList;
+    })
 
     ProjectsStore.subscribe((data) => {
         projectsData = data
     })
+
 
     function initProjects() {
         closeAllProjects()
@@ -96,7 +132,7 @@
 
 </script>
 <main>
-    <Author/>
+    <Author author={author}/>
     {#if pageLoaded}
         <div class="row mt-4">
             <div class="col-left projects pr-1 mb-2" transition:fly="{{ x: -200, duration: 500}}">

@@ -11,14 +11,14 @@
         {#if github !== ''}
         <a href="{github}"
            target="_blank" class="link mr-2"><img alt="github"
-                                                  src="/icons/github-alt.svg"
+                                                  src="/wp-content/themes/portfolio-theme/icons/github-alt.svg"
                                                   class="icon"/>
             <span class="link">GitHub</span>
         </a>
         {/if}
         {#if website !== ''}
             <a href="{website}"
-               target="_blank" class="link"><img alt="website" src="/icons/web.svg"
+               target="_blank" class="link"><img alt="website" src="/wp-content/themes/portfolio-theme/icons/web.svg"
                                                  class="icon"/>
                 <span class="link">Website</span>
             </a>
