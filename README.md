@@ -2,7 +2,7 @@
 
 My portfolio SPA site using the awesome Svelte framework. 
 
-Website: [rsousa.net](http://rsousa.net)
+Website: [rsousa.net](http://r-sousa.com)
 
 ## Instructions
 
